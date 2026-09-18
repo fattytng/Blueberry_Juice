@@ -1,0 +1,6 @@
+file_id,prediction
+example_test_01.csv,Normal
+example_test_02.csv,Side I
+example_test_03.csv,Normal
+example_test_04.csv,Side II
+example_test_05.csv,Normal

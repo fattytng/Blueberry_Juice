@@ -1,0 +1,6 @@
+file_id,prediction
+example_data_01.csv,0.6123
+example_data_02.csv,0.0812
+example_data_03.csv,0.3345
+example_data_04.csv,0.9051
+example_data_05.csv,0.0421
