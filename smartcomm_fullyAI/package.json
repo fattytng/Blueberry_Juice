@@ -1,0 +1,14 @@
+{
+  "name": "smartcomm-fullyai",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Rachel's mobile-first commute companion prototype",
+  "scripts": {
+    "start": "node server.cjs",
+    "test": "node --test tests/*.test.cjs",
+    "check": "node --check dist/planner.js && node --check dist/geo.js && node --check dist/session.js && node --check dist/web.js && node --check lib/feeds.cjs && node --check server.cjs && node --check dist/sw.js"
+  },
+  "dependencies": {
+    "leaflet": "^1.9.4"
+  }
+}

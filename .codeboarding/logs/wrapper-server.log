@@ -15,3 +15,12 @@ INFO:     127.0.0.1:55654 - "GET /health HTTP/1.1" 200 OK
 [stderr] 2026-09-18 17:46:02 INFO     [codeboarding_pro.session:202] Session 3f5a85d1-c0cb-4633-8a46-034b295a4d63: FileMonitor activated
 [stderr] 2026-09-18 17:46:02 INFO     [codeboarding_pro.session:243] Session 3f5a85d1-c0cb-4633-8a46-034b295a4d63: LSP wiring complete
 [stderr] 2026-09-18 17:46:02 INFO     [codeboarding_pro.lsp.bootstrap:67] LSP clients started successfully (attempt 1)
+[stderr] 2026-09-18 18:35:02 INFO     [watchfiles.main:308] 1 change detected
+[stderr] 2026-09-18 18:35:03 WARNING  [codeboarding_pro.analysis_controller:427] Skipping incremental update: full analysis artifacts not ready yet
+[stderr] 2026-09-18 18:35:03 INFO     [codeboarding_pro.analysis_controller:259] No cached analysis results; skipping health report
+[stderr] 2026-09-18 18:41:08 INFO     [watchfiles.main:308] 1 change detected
+[stderr] 2026-09-18 18:41:08 WARNING  [codeboarding_pro.analysis_controller:427] Skipping incremental update: full analysis artifacts not ready yet
+[stderr] 2026-09-18 18:41:08 INFO     [codeboarding_pro.analysis_controller:259] No cached analysis results; skipping health report
+[stderr] 2026-09-18 18:52:26 INFO     [watchfiles.main:308] 1 change detected
+[stderr] 2026-09-18 18:52:27 WARNING  [codeboarding_pro.analysis_controller:427] Skipping incremental update: full analysis artifacts not ready yet
+[stderr] 2026-09-18 18:52:27 INFO     [codeboarding_pro.analysis_controller:259] No cached analysis results; skipping health report

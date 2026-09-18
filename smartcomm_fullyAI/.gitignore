@@ -1,0 +1,8 @@
+.DS_Store
+node_modules/
+.build/
+DerivedData/
+*.xcuserstate
+xcuserdata/
+.env
+*.log
