@@ -1,0 +1,16 @@
+[stderr] INFO:     Started server process [44591]
+[stderr] INFO:     Waiting for application startup.
+[stderr] INFO:     Application startup complete.
+[stderr] INFO:     Uvicorn running on http://127.0.0.1:8766 (Press CTRL+C to quit)
+INFO:     127.0.0.1:60731 - "GET /health HTTP/1.1" 200 OK
+[stderr] INFO:     ('127.0.0.1', 60732) - "WebSocket /ws" [accepted]
+[stderr] 2026-09-18 02:03:02 INFO     [codeboarding_pro.ws.server:258] WebSocket connected: session 0a48f7e6-8689-4bca-a815-c54e3e33bfdd
+[stderr] INFO:     connection open
+[stderr] 2026-09-18 02:03:02 INFO     [tool_registry.manifest:309] has_required_tools: csharp unavailable (dotnet missing); skipping check
+[stderr] 2026-09-18 02:03:02 INFO     [codeboarding_pro.lsp.bootstrap:56] LSP startup attempt 1/3
+[stderr] 2026-09-18 02:03:02 INFO     [codeboarding_pro.session:183] Session 0a48f7e6-8689-4bca-a815-c54e3e33bfdd initialized: repo=/Users/jerry/Documents/GitHub/NebulaX-Hackathon-ProblemStatement, project=NebulaX-Hackathon-ProblemStatement, output=/Users/jerry/Documents/GitHub/NebulaX-Hackathon-ProblemStatement/.codeboarding
+[stderr] 2026-09-18 02:03:02 INFO     [static_analyzer:279] No supported languages detected in /Users/jerry/Documents/GitHub/NebulaX-Hackathon-ProblemStatement; no LSP clients to start.
+[stderr] 2026-09-18 02:03:02 INFO     [codeboarding_pro.file_monitor:106] FileMonitor started for /Users/jerry/Documents/GitHub/NebulaX-Hackathon-ProblemStatement
+[stderr] 2026-09-18 02:03:02 INFO     [codeboarding_pro.session:202] Session 0a48f7e6-8689-4bca-a815-c54e3e33bfdd: FileMonitor activated
+[stderr] 2026-09-18 02:03:02 INFO     [codeboarding_pro.session:243] Session 0a48f7e6-8689-4bca-a815-c54e3e33bfdd: LSP wiring complete
+[stderr] 2026-09-18 02:03:02 INFO     [codeboarding_pro.lsp.bootstrap:67] LSP clients started successfully (attempt 1)
