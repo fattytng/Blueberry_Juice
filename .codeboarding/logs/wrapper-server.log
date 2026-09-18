@@ -1,0 +1,17 @@
+[stderr] INFO:     Started server process [58564]
+[stderr] INFO:     Waiting for application startup.
+[stderr] INFO:     Application startup complete.
+[stderr] INFO:     Uvicorn running on http://127.0.0.1:8766 (Press CTRL+C to quit)
+INFO:     127.0.0.1:55654 - "GET /health HTTP/1.1" 200 OK
+[stderr] INFO:     ('127.0.0.1', 55655) - "WebSocket /ws" [accepted]
+[stderr] 2026-09-18 17:46:01 INFO     [codeboarding_pro.ws.server:258] WebSocket connected: session 3f5a85d1-c0cb-4633-8a46-034b295a4d63
+[stderr] INFO:     connection open
+[stderr] 2026-09-18 17:46:02 INFO     [tool_registry.manifest:309] has_required_tools: csharp unavailable (dotnet missing); skipping check
+[stderr] 2026-09-18 17:46:02 INFO     [codeboarding_pro.lsp.bootstrap:56] LSP startup attempt 1/3
+[stderr] 2026-09-18 17:46:02 INFO     [codeboarding_pro.session:183] Session 3f5a85d1-c0cb-4633-8a46-034b295a4d63 initialized: repo=/Users/jerry/Documents/GitHub/Blueberry_Juice, project=Blueberry_Juice, output=/Users/jerry/Documents/GitHub/Blueberry_Juice/.codeboarding
+[stderr] 2026-09-18 17:46:02 WARNING  [static_analyzer.scanner:123] No total code count found in Tokei output
+[stderr] 2026-09-18 17:46:02 INFO     [static_analyzer:337] No supported languages detected in /Users/jerry/Documents/GitHub/Blueberry_Juice; no LSP clients to start.
+[stderr] 2026-09-18 17:46:02 INFO     [codeboarding_pro.file_monitor:106] FileMonitor started for /Users/jerry/Documents/GitHub/Blueberry_Juice
+[stderr] 2026-09-18 17:46:02 INFO     [codeboarding_pro.session:202] Session 3f5a85d1-c0cb-4633-8a46-034b295a4d63: FileMonitor activated
+[stderr] 2026-09-18 17:46:02 INFO     [codeboarding_pro.session:243] Session 3f5a85d1-c0cb-4633-8a46-034b295a4d63: LSP wiring complete
+[stderr] 2026-09-18 17:46:02 INFO     [codeboarding_pro.lsp.bootstrap:67] LSP clients started successfully (attempt 1)
