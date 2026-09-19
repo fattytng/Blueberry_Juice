@@ -1,6 +1,10 @@
 # SmartComm — mobile-first web interface
+# SmartComm — Mobile-First Web Interface
 
 Rachel's door-to-door Tampines–CBD commute planner. Open it directly in a phone browser: **no native application, Xcode or app-store installation is needed**.
+> 📖 **New here?** Read the [User Manual (MANUAL.md)](MANUAL.md) for a full guide on how to use the app, manage your commute agendas, enable notifications, and customise your settings.
+
+SmartComm is a door-to-door Singapore commute planner. Open it directly in a phone browser: **no native application, Xcode or app-store installation is needed**.
 
 This revision follows Section 3 in [jerry/smartcomm.md](../jerry/smartcomm.md) and the PS2 README. It provides real OpenStreetMap walking and rail geography, route replanning, arrival ranges, live observations and crowd forecasts, integrated route comparison, labelled event replay, and saved journey progress. See [WRITEUP.md](WRITEUP.md) for the PS2 section-by-section mapping, rubric decisions and known limitations, and [SOURCES.md](SOURCES.md) for data provenance and licences.
 
