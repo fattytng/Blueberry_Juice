@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>SmartComm Browser Test Harness</title>
+  <script src="../dist/vendor/leaflet/leaflet.js"></script>
+  <script src="../dist/data/network.js"></script>
+  <script src="../dist/geo.js"></script>
+  <script src="../dist/planner.js"></script>
+  <script src="../dist/session.js"></script>
+</head>
+<body>
+  <div id="results">Running Tests...</div>
+  <script>
+    const E = window.SmartCommEngine;
+    const G = window.SmartCommGeo;
+    const S = window.SmartCommSession;
+    const results = [];
+
+    function assert(cond, msg) {
+      if (!cond) throw new Error(msg || 'Assertion failed');
+    }
+    assert.equal = (a, b, msg) => {
+      if (a !== b) throw new Error(`${msg || 'Assertion failed'}: expected ${b}, got ${a}`);
+    };
+    assert.ok = (a, msg) => {
+      if (!a) throw new Error(msg || 'Assertion failed: value is falsy');
+    };
+
+    function test(name, fn) {
+      try {
+        fn();
+        results.push({ name, status: 'PASS' });
+      } catch (err) {
+        results.push({ name, status: 'FAIL', error: err.message });
+      }
+    }
+
+    test('Rachel normal commute stays quiet', () => {
+      const p = E.plan(E.defaults, 'normal');
+      assert.equal(p.recommendation.id, 'ewl');
+      assert.equal(p.recommendation.leave, E.minutes('07:40'));
+      assert.equal(p.needsAlert, false);
+    });
+
+    test('EWL delay switches to DTL alternative', () => {
+      const p = E.plan(E.defaults, 'delay');
+      assert.equal(p.recommendation.id, 'dtl');
+      assert.ok(p.recommendation.arrivalMax <= p.deadline - E.defaults.buffer);
+      assert.equal(p.needsAlert, true);
+    });
+
+    test('Arjun persona prioritises comfort & shelter', () => {
+      const arjunPrefs = { ...E.defaults, ...E.personas.arjun, persona: 'arjun' };
+      const p = E.plan(arjunPrefs, 'crowd');
+      assert.equal(p.recommendation.id, 'dtl');
+    });
+
+    test('Mdm Lim persona enforces step-free paths and slower walking pace', () => {
+      const mdmPrefs = { ...E.defaults, ...E.personas.mdmLim, persona: 'mdmLim' };
+      const p = E.plan(mdmPrefs, 'normal');
+      assert.ok(p.recommendation.stepFree);
+      assert.equal(p.preferences.walkSpeed, 50);
+    });
+
+    test('Planned closure excludes EWL during maintenance window', () => {
+      const p = E.plan(E.defaults, 'planned');
+      assert.equal(p.routes.find(r => r.id === 'ewl').blocked, true);
+      assert.equal(p.recommendation.id, 'dtl');
+    });
+
+    test('Directions and steps contain formatted time and walking legs', () => {
+      const p = E.plan(E.defaults, 'delay');
+      const steps = E.steps(p, p.recommendation);
+      assert.equal(steps[0].mode, 'walk');
+      assert.equal(steps[steps.length - 1].mode, 'walk');
+      assert.equal(steps[2].time, 'No transfers');
+    });
+
+    document.getElementById('results').innerHTML = '<pre>' + JSON.stringify(results, null, 2) + '</pre>';
+    console.log('TEST_RESULTS_START' + JSON.stringify(results) + 'TEST_RESULTS_END');
+  </script>
+</body>
+</html>
+
