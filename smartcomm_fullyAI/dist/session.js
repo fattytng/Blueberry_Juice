@@ -7,7 +7,7 @@
       const record=JSON.parse(storage.getItem(KEY)||'null');
       if(!record)return null;
       const started=Date.parse(record.startedAt);
-      if(record.version!==1||!Number.isFinite(started)||now-started<0||now-started>18*3600000||!['ewl','dtl'].includes(record.route)||!Number.isInteger(record.step)||record.step<0||record.step>3)throw new Error('Invalid saved journey');
+      if(record.version!==1||!Number.isFinite(started)||now-started<0||now-started>18*3600000||!['ewl','dtl','shuttle'].includes(record.route)||!Number.isInteger(record.step)||record.step<0||record.step>3)throw new Error('Invalid saved journey');
       const calculated=Date.parse(record.calculatedAt||record.startedAt);
       if(!Number.isFinite(calculated)||calculated>started||started-calculated>3600000)throw new Error('Invalid plan time');
       const plan=E.plan(record.preferences,record.scenario,record.snapshot,calculated);

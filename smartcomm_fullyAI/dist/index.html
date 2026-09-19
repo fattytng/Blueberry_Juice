@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#ffffff">
-  <meta name="description" content="A quieter, clearer daily commute. Rachel's interactive SmartComm prototype.">
-  <title>SmartComm · Your daily commute</title>
+  <meta name="description" content="SmartComm · Your Minimalist Daily Commute Companion In Singapore.">
+  <title>SmartComm · Your Daily Commute</title>
   <link rel="icon" href="icon.svg" type="image/svg+xml">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
@@ -18,24 +18,77 @@
   <script src="web.js" defer></script>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to your commute</a>
-  <div class="prototype-strip"><div class="shell"><span>SmartComm prototype · Not a government service</span><span>Singapore</span></div></div>
-  <header class="header"><div class="shell header-inner">
-    <a class="brand" href="#today" aria-label="SmartComm home"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 17V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v10M6 11h12M9 20l2-3m4 3-2-3M8 17h8"/><circle cx="9" cy="14" r=".6"/><circle cx="15" cy="14" r=".6"/></svg></span>smartcomm<span class="brand-period">.</span></a>
-    <nav class="desktop-nav" aria-label="Main navigation"><button data-nav="today" class="active">Today</button><button data-nav="commute">My commute</button><button data-nav="updates">Updates <span class="count" id="update-count">1</span></button></nav>
-    <button class="profile-button" data-action="edit" aria-label="Edit Rachel's commute"><span>R</span><span class="profile-name">Rachel</span></button>
-  </div></header>
+  <a class="skip-link" href="#main">Skip To Main Commute</a>
+
+  <!-- Floating Outside-App Push Notification Simulation Banner -->
+  <aside id="push-notification-banner" class="push-notification-banner" role="alert" aria-live="assertive" hidden></aside>
+
+  <header class="header">
+    <div class="shell header-inner">
+      <a class="brand" href="#today" aria-label="SmartComm Home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M6 17V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v10M6 11h12M9 20l2-3m4 3-2-3M8 17h8"/><circle cx="9" cy="14" r=".6"/><circle cx="15" cy="14" r=".6"/></svg>
+        </span>
+        <span class="brand-text">SmartComm</span><span class="brand-period">.</span>
+      </a>
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <button data-nav="today" class="active"><span data-icon="home"></span> Today</button>
+        <button data-nav="commute"><span data-icon="route"></span> My Commute</button>
+        <button data-nav="updates"><span data-icon="bell"></span> Updates <span class="count" id="update-count" hidden>0</span></button>
+      </nav>
+      <div class="header-actions">
+        <button class="agenda-quick-badge" data-action="quick-agenda" id="header-agenda-badge" aria-label="Switch Commute Agenda">
+          <span data-icon="route"></span>
+          <span id="header-agenda-name">Home To Work</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
   <main id="main" class="shell" tabindex="-1">
-    <div class="page-heading"><div><p class="eyebrow" id="eyebrow">YOUR COMMUTE</p><h1 id="page-title">Your next journey</h1><p id="page-description"></p></div><button class="mode-button" data-action="mode"><span id="mode-label">Official feeds</span><span aria-hidden="true">⌄</span></button></div>
+    <div class="page-heading">
+      <div>
+        <p class="eyebrow" id="eyebrow">YOUR COMMUTE</p>
+        <h1 id="page-title">Your Next Journey</h1>
+        <p id="page-description"></p>
+      </div>
+      <div class="live-status-pill" id="live-indicator">
+        <span class="pulse-dot" aria-hidden="true"></span>
+        <span id="live-status-text">Live Transit Active</span>
+      </div>
+    </div>
     <p id="replan-status" class="sr-only" role="status" aria-live="polite"></p>
-    <section id="today-view" aria-label="Today's journey"></section>
-    <section id="commute-view" hidden aria-label="Saved commute"></section>
-    <section id="updates-view" hidden aria-label="Journey updates"></section>
-    <footer class="footer"><span>© OpenStreetMap contributors</span><button class="text-button" data-action="about">About SmartComm</button></footer>
+
+    <!-- Today View -->
+    <section id="today-view" aria-label="Today's Commute"></section>
+
+    <!-- My Commute Settings View -->
+    <section id="commute-view" hidden aria-label="My Commute Profiles"></section>
+
+    <!-- Updates View -->
+    <section id="updates-view" hidden aria-label="Commute Updates"></section>
+
+    <footer class="footer">
+      <span>© OpenStreetMap Contributors · SmartComm</span>
+      <span class="footer-tag">Bierstadt Typography · Fast Transit</span>
+    </footer>
   </main>
-  <nav class="mobile-nav" aria-label="Mobile navigation"><button data-nav="today" class="active"><span data-icon="home"></span>Today</button><button data-nav="commute"><span data-icon="route"></span>My commute</button><button data-nav="updates"><span data-icon="bell"></span>Updates</button></nav>
-  <dialog id="dialog" aria-labelledby="dialog-title"><div class="dialog-heading"><h2 id="dialog-title"></h2><button class="icon-button" id="close-dialog" aria-label="Close dialog">✕</button></div><div id="dialog-body"></div></dialog>
+
+  <nav class="mobile-nav" aria-label="Mobile Navigation">
+    <button data-nav="today" class="active"><span data-icon="home"></span>Today</button>
+    <button data-nav="commute"><span data-icon="route"></span>My Commute</button>
+    <button data-nav="updates"><span data-icon="bell"></span>Updates</button>
+  </nav>
+
+  <dialog id="dialog" aria-labelledby="dialog-title">
+    <div class="dialog-heading">
+      <h2 id="dialog-title"></h2>
+      <button class="icon-button" id="close-dialog" aria-label="Close Dialog">✕</button>
+    </div>
+    <div id="dialog-body"></div>
+  </dialog>
+
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <noscript><p class="shell">Enable JavaScript to use the commute planner.</p></noscript>
+  <noscript><p class="shell">Please Enable JavaScript To Use The Commute Planner.</p></noscript>
 </body>
 </html>
