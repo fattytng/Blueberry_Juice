@@ -10,6 +10,7 @@ try {
   }
 } catch (error) { if (error.code !== 'ENOENT') console.error('Could not read local configuration.'); }
 const root = path.join(__dirname, 'dist');
+const port = Number(process.env.PORT) || 4173;
 const types = { '.html': 'text/html', '.css': 'text/css', '.js': 'text/javascript', '.svg': 'image/svg+xml', '.webmanifest': 'application/manifest+json', '.png': 'image/png', '.json':'application/json' };
 const server = http.createServer(async (req, res) => {
   let pathname;
@@ -28,4 +29,4 @@ const server = http.createServer(async (req, res) => {
     res.end(data);
   });
 });
-server.listen(4173, '0.0.0.0', () => console.log('SmartComm is ready at http://localhost:4173'));
+server.listen(port, '0.0.0.0', () => console.log(`SmartComm is ready at http://localhost:${port}`));
